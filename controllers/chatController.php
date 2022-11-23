@@ -1,8 +1,8 @@
 <?php
     /*crear chat*/
-    if(isset($_POST['sendMessage'])){ 
-        ChatRepository::openChat($_SESSION['user']->getIdUser(),$_GET['id']);
+    if(isset($_POST['sendMessage']) && isset($_POST['message'])){ 
+        ChatRepository::saveMessage($_POST['message']);
     }
        
-    ?>
+?>
     

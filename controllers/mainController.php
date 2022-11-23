@@ -18,7 +18,8 @@ if(!isset($_SESSION['user'])){
 if(isset($_GET['login'])) {
     require_once('controllers/loginController.php');
 }
-if(isset($_GET['chat'])) {
+if(isset($_POST['sendMessage'])) {
+    
     require_once('controllers/chatController.php');
 }
 
