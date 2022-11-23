@@ -3,6 +3,7 @@
     if(isset($_POST['sendMessage']) && isset($_POST['message'])){ 
         ChatRepository::saveMessage($_POST['message']);
     }
+    $messages = ChatRepository::getMessages();
        
 ?>
     

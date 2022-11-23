@@ -46,11 +46,16 @@ al cargar el chat  */
 
     <section>
         <div class="message-container">
-            <div class="message">
-                
-            </div>
+        <?php
+            foreach($messages as $message){
+                echo '<div class="message">
+                '.$message->getUser()->getName().': '.$message->getMsg().'
+                </div>';
+            }
+            
+        ?>
         </div>
-
+        
         <form action="index.php" method="post">
             <textarea rows=5 cols=150 name="message"></textarea>
             <input type="submit" name="sendMessage" value="Enviar mensaje">

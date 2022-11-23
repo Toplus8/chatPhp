@@ -11,10 +11,15 @@
             $result = $db->query($q);
         }
 
-        // public static function getMessage($message){
-        //     $db=Conectar::conexion();
-        //     $q = "INSERT INTO `mensajes` (`id_msg`, `id_user`, `msg`, `date`) VALUES (NULL, '".$_SESSION['user']->getIdUser()."', ".$message.", NULL);";
-        //     $result = $db->query($q);
-        // }
+         public static function getMessages(){
+            $db=Conectar::conexion();
+            $messages = [];
+            $q = "SELECT * FROM mensajes";
+            $result = $db->query($q);
+            while($datos=$result->fetch_assoc()){
+                $messages [] = new Content ($datos);
+            }
+            return $messages;
+        }
     }
 ?>
