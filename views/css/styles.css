@@ -1,0 +1,22 @@
+body{
+    text-align: center;
+    box-sizing: border-box;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    height: 70vh;
+}
+
+main aside{
+    width: 20%;
+    border: 1px solid black;
+}
+
+main section{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    border: 1px solid black;
+}

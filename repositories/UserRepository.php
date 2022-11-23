@@ -57,6 +57,23 @@ class UserRepository{
         $result = $db->query($q);
     
     }
+
+    /*
+    public static function toggleStatus($user){
+        $db=Conectar::conexion();
+        $status = $user->getStatus();
+        if($status == 0){
+            $status = 1;
+        }
+        else if($status == 1){
+            $status = 0;
+        }
+        $q = "UPDATE usuarios SET status=" . $status . " WHERE id_user=" . $user->getIdUser();
+        $result = $db->query($q);
+    }
+
+    */
+    
     /*public static function connectedStatus($user,$status){ ////////NO FUNCIONA ._.
         if($status==0){
             $db=Conectar::conexion();

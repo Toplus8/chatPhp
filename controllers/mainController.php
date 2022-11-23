@@ -2,11 +2,9 @@
 
 //cargamos el modelo lo primero de todo.
 require_once('models/UserModel.php');
-require_once('models/UserRepository.php');
-require_once('models/ChatRoomModel.php');
-require_once('models/ChatRoomRepository.php');
-require_once('models/ChatContentModel.php');
-require_once('models/ChatContentRepository.php');
+require_once('repositories/UserRepository.php');
+require_once('models/ChatModel.php');
+require_once('repositories/ChatRepository.php');
 session_start();
 
 if(!isset($_SESSION['user'])){
@@ -24,7 +22,7 @@ if(isset($_GET['chat'])) {
     require_once('controllers/chatController.php');
 }
 
-$usuarios= UserRepository::getConnectedUsers();
+$usuariosConectados= UserRepository::getConnectedUsers();
 // carga de vistas
 require_once("views/mainView.phtml");
 ?>

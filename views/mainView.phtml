@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./views/css/css.css">
+    <link rel="stylesheet" type="text/css" href="./views/css/styles.css">
     <title>Chat PHP</title>
 </head>
 <body>
@@ -27,22 +27,39 @@ selecciona usuario y un botón para enviar mensajes creando un chat si no lo hub
 Crear un repositorio de mensajes (id_message, id_send, id_receiver, content, date). que carga los mensajes
 al cargar el chat  */
 ?>
-<h4>Usuarios conectados:</h4>
-<?php
+<main>
+    <aside>
+        <div class="connected-users">
+            <ul>
+                <?php
+                foreach($usuariosConectados as $usuario){
+                    echo'<li>'.$usuario->getName().'</li>';
+                }
+                ?>
+            </ul>
+        </div>
+        <div class="pie">
+            <button> admin </button>
+            <button> salir </button>
+        </div>
+    </aside>
 
-foreach($usuarios as $usuario){
-    echo $usuario->getName();
-    if(!$_SESSION['user']->getName()==""){
-        ?>
-        <form <?php echo 'action="index.php?chat&id='.$usuario->getIdUser().'"'?> method="post">
-        <input type="submit" id="sendMessage" value="Enviar mensaje">
+    <section>
+        <div class="message-container">
+            <div class="message">
+                <span> hola </span>
+            </div>
+        </div>
+
+        <form action="index.php" method="post">
+            <textarea rows=5 cols=150></textarea>
+            <input type="submit" id="sendMessage" value="Enviar mensaje">
         </form>
-        <?php
-   }
-}
+    </section>
 
-?>
-<h5>&copy;2022 Juan Tom&aacute;s Romero</h5>
-    
+</main>
+<footer>
+    <h5>&copy;2022 Juan Tom&aacute;s Romero, Jesús Muela, Antonio Ruiz</h5>
+</footer> 
 </body>
 </html>
