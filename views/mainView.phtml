@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./views/css/css.css">
+    <title>Chat PHP</title>
+</head>
+<body>
+<h1>Chat Online - PHP</h1>
+<a href="index.php">Inicio</a> -
+
+<?php
+if($_SESSION['user']->getName()=="")
+	echo '<a href="index.php?login">Iniciar Sesi&oacute;n</a></br>';
+else{
+	echo 'Bienvenido '.$_SESSION['user']->getName().' ';
+    if($_SESSION['user']->getRole()==1){
+	    echo ' - <a href="index.php?administration">Panel de administración</a> ';
+	} 
+   
+    echo ' - <a href="index.php?login&logout">Salir</a>';
+}
+/* Al conectarse el usuario el status cambia a 1 para mostrar los usuarios conectados. Al desconectarse el status pasa a 0. Crear un formulario de envío de mensajes donde se 
+selecciona usuario y un botón para enviar mensajes creando un chat si no lo hubiera ya activo.
+Crear un repositorio de mensajes (id_message, id_send, id_receiver, content, date). que carga los mensajes
+al cargar el chat  */
+?>
+<h4>Usuarios conectados:</h4>
+<?php
+
+foreach($usuarios as $usuario){
+    echo $usuario->getName();
+    if(!$_SESSION['user']->getName()==""){
+        ?>
+        <form <?php echo 'action="index.php?chat&id='.$usuario->getIdUser().'"'?> method="post">
+        <input type="submit" id="sendMessage" value="Enviar mensaje">
+        </form>
+        <?php
+   }
+}
+
+?>
+<h5>&copy;2022 Juan Tom&aacute;s Romero</h5>
+    
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./views/css/css.css">
+    <title>Noticiario - PHP acceso y registro</title>
+</head>
+<body>
+<h1>Noticiario - PHP Acceso y registro</h1>
+<a href="index.php">Inicio</a> -
+<h2>Acceso</h2>
+    <form action="index.php?login" method="post">
+        <input type="text" name="user" placeholder="Usuario"/>
+        <input type="password" name="password" placeholder="Contraseña"/>
+        <input type="submit" name="acceso" value="Iniciar Sesi&oacute;n"/>
+    </form>
+
+    <h2>Registro</h2>
+    <form action="index.php?login" method="post">
+        <input type="text" name="userRegister" placeholder="Usuario"/>
+        <input type="password" name="passRegister" placeholder="Contraseña"/>
+        <input type="password" name="pass2Register" placeholder="Repite la contraseña"/>
+        <input type="submit" name="registro" value="Registro"/>
+    </form></br>
+
+    <?php
+    if(isset($error)){
+        echo $error;
+    }
+    
+    
+    ?>
+</body>
+</html>
