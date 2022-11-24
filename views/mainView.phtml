@@ -33,6 +33,9 @@ Al seleccionar sala te lleva a una nueva view donde se ve la sala (Jt+ a medias)
 <nav>
     <h3>Salas de chat disponibles:</h3>
     <?php
+    if($_SESSION['user']->getName()==""){
+        echo '<br><h3>¿Quieres participar en una sala de chat? <a href="index.php?login">¡Registrate!</a></h3>';
+    }
     foreach($usuariosConectados as $usuario){
         echo'<li>'.$usuario->getName().'</li>';
         if(!$_SESSION['user']->getName()==""){
@@ -42,9 +45,7 @@ Al seleccionar sala te lleva a una nueva view donde se ve la sala (Jt+ a medias)
             <input type="submit" name="openChat" value="Acceder a la sala">
         </form>
     <?php 
-        }else{
-        echo '<br><h3>¿Quieres participar en una sala de chat? <a href="index.php?login">¡Registrate!</a></h3>';
-        }  
+        } 
     }    
     ?>
 </nav> </br>

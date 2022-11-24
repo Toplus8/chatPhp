@@ -19,7 +19,6 @@
             return $messages;
         }
         /*Obtener Salas de chat disponibles */
-        /*¿Una sala de chat solo está disponible si el creador está conectado? si es asi esto no vale 
         public static function getChatRooms(){
             $db=Conectar::conexion();
             $chatRooms = [];
@@ -30,25 +29,25 @@
             }
             return $chatRooms;
         }
-        /*Abrir Sala de chat, si no existe se crea una. 
+        /*Abrir Sala de chat, si no existe se crea una. */
         public static function openChatRoomById($id){
-            /*Crear nueva tabla con estos contenidos: id_room, id_user, status 
+          /*  Crear nueva tabla con estos contenidos: id_room, id_user, status */
             $db=Conectar::conexion(); 
             $result = null;
             $q = $db->query("SELECT * FROM NUEVATABLA WHERE id_user=$id AND status= 1");
             if($datos = $q->fetch_assoc()){
-            $result = new Chart($datos);
+            $result = new Chat($datos);
             }
-            if($result == null){ /*Funcionara? 
+            if($result == null){ /*Funcionara? */
                 $db=Conectar::conexion();
                 $q = "INSERT INTO NUEVATABLA (id_user, status) VALUES ($id, 1)";
                 $result = $db->query($q);
                 if($datos = $q->fetch_assoc()){
-                $result = new Chart($datos);
+                $result = new Chat($datos);
                 }   
             }
             return $result;
-        }*/
+        }
     }
 
 ?>
