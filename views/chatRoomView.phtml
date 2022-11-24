@@ -8,21 +8,26 @@
     <title>Chat Online - PHP</title>
 </head>
 <body>
-<h1>Chat Online - PHP</h1>
-<a href="index.php">Inicio</a> -
+<header>
+    <h1>Chat Online - PHP</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="index.php">Inicio</a></li>
+        <?php
+        if($_SESSION['user']->getName()=="")
+            echo '<li><a href="index.php?login">Iniciar Sesi&oacute;n</a></li>';
+        else{
+            if($_SESSION['user']->getRole()==1){
+                echo '<li><a href="index.php?administration">Panel de administración</a></li> ';
+            } 
+            echo ' <li><a href="index.php?chatRoom">Salas de chat</a></li>';
+            echo ' <li><a href="index.php?login&logout">Salir</a></li>';
+        }
+        ?>
+    </ul>
+</nav>
 
-<?php
-if($_SESSION['user']->getName()=="")
-	echo '<a href="index.php?login">Iniciar Sesi&oacute;n</a></br>';
-else{
-	echo 'Bienvenido '.$_SESSION['user']->getName().' ';
-    if($_SESSION['user']->getRole()==1){
-	    echo ' - <a href="index.php?administration">Panel de administración</a> ';
-	} 
-    echo ' - <a href="index.php?chatRoom">Salas de chat</a>';
-    echo ' - <a href="index.php?login&logout">Salir</a>';
-}
-?>
 <main>
     <aside>
         <div class="connected-users">
@@ -34,31 +39,36 @@ else{
                 ?>
             </ul>
         </div>
-        <div class="pie">
-            <input>admin</input> <!--¿¿¿Esto para que era??? -->
-
-            <form action="index.php?login&logout" method="post">
-                <input type="submit"> Desconectarse </input>
-            </form>    
-            
-        </div>
     </aside>
 
     <section>
-        <div class="message-container">
-        <?php
-            foreach($messages as $message){
-                echo '<div class="message">
-                '.$message->getUser()->getName().': '.$message->getMsg().'
-                </div>';
-            }
-            
-        ?>
+         <nav>
+            <ul>
+                <?php
+                    foreach( $salas as $sala){
+                        echo' <li><a href="index.php?chatRoom&id='.$sala->getIdRoom().'">Sala '.$sala->getIdRoom().'</a></li>';
+                    }
+                ?>
+            </ul>
+        </nav>
+        <div class="chat-container">
+            <div class="message-container">
+                <?php
+                    foreach($messages as $message){
+                        echo '<div class="message">'.$message->getUser()->getName().': '.$message->getMsg().'</div>';
+                    }  
+                ?>
+            </div>
+            <!-- Hay que especificar a que sala enviamos cada mensaje -->
+            <?php
+                echo'
+                <form action="index.php?chatRoom&id=1" method="post" id="writeComment">
+                    <textarea rows=5 cols=50 name="message"></textarea>
+                    <input type="submit" name="sendMessage" value="Enviar mensaje">
+                </form>
+                ';
+            ?>
         </div>
-        <form action="index.php" method="post">
-            <textarea rows=5 cols=150 name="message"></textarea>
-            <input type="submit" name="sendMessage" value="Enviar mensaje">
-        </form>
     </section>
 
 </main>

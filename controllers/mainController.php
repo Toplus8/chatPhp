@@ -6,6 +6,7 @@ require_once('repositories/UserRepository.php');
 require_once('models/ChatModel.php');
 require_once('repositories/ChatRepository.php');
 require_once('models/ChatContentModel.php');
+require_once('models/ChatRoomModel.php');
 session_start();
 
 if(!isset($_SESSION['user'])){

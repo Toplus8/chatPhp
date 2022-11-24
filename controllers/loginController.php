@@ -14,7 +14,7 @@ if(isset($_POST['registro'])){
 if(isset($_POST['acceso'])){
     UserRepository::userLogin($_POST['user'],$_POST['password']);
     UserRepository::toggleStatus($_SESSION['user']);
-    header('location:index.php');
+    header('location:index.php?chatRoom');
 }
 /*require_once('controllers/mainController.php');*/
 require_once('views/LoginView.phtml');
