@@ -44,10 +44,9 @@ class UserRepository{
             }
         }
     }
-
     
     /*Cambio de status para mostrar los conectados*/
-    
+
     public static function toggleStatus($user){
         $db=Conectar::conexion();
         $status = $user->getStatus() == 1 ? 0 : 1;
@@ -55,21 +54,6 @@ class UserRepository{
         $q = "UPDATE usuarios SET status=" . $status . " WHERE id_user=" . $user->getIdUser();
         $result = $db->query($q);
     }
-
-    
-    
-    /*public static function connectedStatus($user,$status){ ////////NO FUNCIONA ._.
-        if($status==0){
-            $db=Conectar::conexion();
-            $q = "UPDATE usuarios SET status=1 WHERE id_user=$user";
-            $result = $db->query($q);
-        }
-        if($status==1){
-            $db=Conectar::conexion();
-            $q = "UPDATE usuarios SET status=0 WHERE id_user=$user";
-            $result = $db->query($q);
-        }
-    }*/
     /*Usuarios conectados */
     public static function getConnectedUsers(){ 
         $db=Conectar::conexion();
@@ -80,7 +64,5 @@ class UserRepository{
         }
         return $usuarios;
     }
-        
-    
 }
 ?>

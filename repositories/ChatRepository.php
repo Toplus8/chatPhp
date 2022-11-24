@@ -19,7 +19,7 @@
             return $messages;
         }
         /*Obtener Salas de chat disponibles */
-        //¿Una sala de chat solo está disponible si el creador está conectado? si es asi esto no vale 
+
         public static function getChatRooms(){
             $db=Conectar::conexion();
             $chatRooms = [];

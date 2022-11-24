@@ -31,28 +31,12 @@ Al seleccionar sala te lleva a una nueva view donde se ve la sala (Jt+ a medias)
  */
 ?>
 <nav>
-    <h3>Salas de chat disponibles:</h3>
     <?php
-    foreach($usuariosConectados as $usuario){
-        echo'<li>'.$usuario->getName().'</li>';
-        if(!$_SESSION['user']->getName()==""){
-    ?> <!-- Ahora mismo no hay salas creadas, dejo esto como ejemplo de como se vería.
-     ¿Dejamos una general básica? crear método que vea que salas hay existentes (done a falta de la nueva tabla).-->
-        <form action="index.php?chatRoom&id= <?php echo $usuario->getIdUser() ?>" method="post">
-            <input type="submit" name="openChat" value="Acceder a la sala">
-        </form>
-    <?php 
-        }else{
+    if($_SESSION['user']->getName()==""){
         echo '<br><h3>¿Quieres participar en una sala de chat? <a href="index.php?login">¡Registrate!</a></h3>';
-        }  
-    }    
+    }
     ?>
-</nav> </br>
-<!--Esto debería aparecer sólo si no tiene una sala de chat creada. Si la tiene el boton debería ser
- "Acceder a tu sala de chat". Habría que hacer el método para que busque las salas existentes (JT+ done a falta de la nueva tabla) -->
-<form action="" method="post">
-    <input type="submit" name="createChat" value="Crea tu propia sala de chat">    
-</form>
+</nav>
 <footer>
     <h5>&copy;2022 Juan Tom&aacute;s Romero, Jesús Muela, Antonio Ruiz</h5>
 </footer> 
