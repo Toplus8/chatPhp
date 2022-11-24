@@ -1,7 +1,7 @@
 <?php
 /*Desconectar usuario*/
 if(isset($_GET['logout'])){
-    UserRepository::disconnectedStatus($_SESSION['user']->getIdUser());
+    UserRepository::toggleStatus($_SESSION['user']);
     unset($_SESSION['user']);
     header('location: index.php');
 }
@@ -13,7 +13,8 @@ if(isset($_POST['registro'])){
 //login de usuario
 if(isset($_POST['acceso'])){
     UserRepository::userLogin($_POST['user'],$_POST['password']);
-    UserRepository::connectedStatus($_SESSION['user']->getIdUser());
+    UserRepository::toggleStatus($_SESSION['user']);
+    header('location:index.php');
 }
 /*require_once('controllers/mainController.php');*/
 require_once('views/LoginView.phtml');

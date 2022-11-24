@@ -39,12 +39,15 @@ class UserRepository{
             if($datos=$result->fetch_assoc()){
                 if($datos['pass']==md5($pass)){
                     $_SESSION['user']= new User($datos);
-                    header('location:index.php'); //redirige a la url especificada
+                     //redirige a la url especificada
                 }
             }
         }
     }
+
+    
     /*Cambio de status para mostrar los conectados*/
+    /*
     public static function connectedStatus($user){
         $db=Conectar::conexion();
         $q = "UPDATE usuarios SET status=1 WHERE id_user=$user";
@@ -57,22 +60,17 @@ class UserRepository{
         $result = $db->query($q);
     
     }
-
-    /*
+    */
+    
     public static function toggleStatus($user){
         $db=Conectar::conexion();
-        $status = $user->getStatus();
-        if($status == 0){
-            $status = 1;
-        }
-        else if($status == 1){
-            $status = 0;
-        }
+        $status = $user->getStatus() == 1 ? 0 : 1;
+        $user->setStatus($status);
         $q = "UPDATE usuarios SET status=" . $status . " WHERE id_user=" . $user->getIdUser();
         $result = $db->query($q);
     }
 
-    */
+    
     
     /*public static function connectedStatus($user,$status){ ////////NO FUNCIONA ._.
         if($status==0){
