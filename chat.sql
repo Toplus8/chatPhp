@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2022 a las 17:12:35
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.1
+-- Tiempo de generación: 24-11-2022 a las 19:11:50
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,6 +34,17 @@ CREATE TABLE `mensajes` (
   `msg` varchar(200) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `mensajes`
+--
+
+INSERT INTO `mensajes` (`id_msg`, `id_room`, `id_user`, `msg`, `date`) VALUES
+(1, 1, 2, 'hola', '2022-11-23 20:47:18'),
+(2, 1, 2, 'adios', '2022-11-23 20:47:18'),
+(3, 1, 2, 'jelou', '2022-11-23 20:47:18'),
+(4, 1, 2, 'jajajjajajajaja\r\n', '2022-11-23 20:47:18'),
+(5, 1, 2, 'QATAR\r\n', '2022-11-23 20:47:18');
 
 -- --------------------------------------------------------
 
@@ -66,15 +77,17 @@ CREATE TABLE `usuarios` (
   `name` varchar(50) NOT NULL,
   `pass` varchar(100) NOT NULL,
   `role` tinyint(1) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  `lastActionAt` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_user`, `name`, `pass`, `role`, `status`) VALUES
-(1, 'admin', '202cb962ac59075b964b07152d234b70', 0, 1);
+INSERT INTO `usuarios` (`id_user`, `name`, `pass`, `role`, `status`, `lastActionAt`) VALUES
+(1, 'admin', '202cb962ac59075b964b07152d234b70', 1, 0, '2022-11-24 18:40:46'),
+(2, 'jota', '202cb962ac59075b964b07152d234b70', 0, 0, '2022-11-24 18:57:00');
 
 --
 -- Índices para tablas volcadas
@@ -109,7 +122,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `salas`
@@ -121,7 +134,7 @@ ALTER TABLE `salas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
