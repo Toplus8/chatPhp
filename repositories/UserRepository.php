@@ -44,7 +44,9 @@ class UserRepository{
             }
         }
     }
-    /*Cambio de status para usuarios conectados y desconectados */
+    
+    /*Cambio de status para mostrar los conectados*/
+
     public static function toggleStatus($user){
         $db=Conectar::conexion();
         $status = $user->getStatus() == 1 ? 0 : 1;
