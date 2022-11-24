@@ -9,6 +9,6 @@
         ChatRepository::openChatRoomById($_GET['id']);
     }
     
-   /*$messages = ChatRepository::getMessages(); */
+    $messages = ChatRepository::getMessages(); 
 ?>
     

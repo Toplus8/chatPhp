@@ -39,9 +39,7 @@
             $result = null;
             $q = $db->query("SELECT * FROM salas WHERE id_user=$id AND status= 1");
             if($datos = $q->fetch_assoc()){
-
                 $result = new Room($datos);
-
             }
             if($result == null){ /*Funcionara? */
                 $db=Conectar::conexion();
