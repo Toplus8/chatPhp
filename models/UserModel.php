@@ -5,6 +5,7 @@ class User{
     private $pass;
     private $role;
     private $status;
+    private $lastActionAt;
 
     public function __construct ($datos){
         $this->id_user = $datos['id_user'];
@@ -12,7 +13,7 @@ class User{
         $this->pass = $datos['pass'];
         $this->role = $datos['role'];
         $this->status = $datos['status'];
-        
+        $this->lastActionAt = $datos['lastActionAt'];
     }
 
     public function getIdUser(){
@@ -34,6 +35,10 @@ class User{
 
     public function setStatus($status){
         $this->status = $status;
+    }
+
+    public function getLastActionAt(){
+        return $this->lastActionAt;
     }
 } 
 

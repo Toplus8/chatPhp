@@ -6,6 +6,7 @@
             $q = "INSERT INTO `mensajes` (`id_msg`, `id_user`, `msg`, `date`) VALUES (NULL, '".$_SESSION['user']->getIdUser()."', '".$message."', '2022-11-23 20:47:18
             ');";
             $result = $db->query($q);
+            UserRepository::updateLastAction($_SESSION['user']);
         }
 
         public static function getMessages(){
@@ -51,6 +52,7 @@
                  $result = new Room($datos);
                 }   
             }
+            UserRepository::updateLastAction($_SESSION['user']);
             return $result;
         }
     }

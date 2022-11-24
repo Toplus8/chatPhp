@@ -16,14 +16,16 @@ if(!isset($_SESSION['user'])){
     $datos['status']=0;
     $_SESSION['user'] = new User($datos);
 }
+
 if(isset($_GET['login'])) {
     require_once('controllers/loginController.php');
     die();
 }
+
 if(isset($_POST['sendMessage'])) {
-    
     require_once('controllers/chatController.php');
 }
+
 if(isset($_GET['chatRoom'])){
     require_once('controllers/chatController.php');
     require_once('views/chatRoomView.phtml');
@@ -31,6 +33,12 @@ if(isset($_GET['chatRoom'])){
 }
 /*$chatRooms = ChatRepository::getChatRooms();*/
 $usuariosConectados= UserRepository::getConnectedUsers();
+if(UserRepository::setInactive($_SESSION['user'])){
+    require_once('views/LoginView.phtml');
+    die();
+}
+
+UserRepository::updateInactiveUsers();
 // carga de vistas
 require_once("views/mainView.phtml");
 ?>
