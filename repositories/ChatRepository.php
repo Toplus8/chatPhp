@@ -19,10 +19,11 @@
             return $messages;
         }
         /*Obtener Salas de chat disponibles */
+
         public static function getChatRooms(){
             $db=Conectar::conexion();
             $chatRooms = [];
-            $q = "SELECT * FROM NUEVATABLA WHERE status=1";
+            $q = "SELECT * FROM salas WHERE status=1";
             $result = $db->query($q);
             while($datos=$result->fetch_assoc()){
                 $chatRooms [] = new Content ($datos);
@@ -31,19 +32,22 @@
         }
         /*Abrir Sala de chat, si no existe se crea una. */
         public static function openChatRoomById($id){
+
           /*  Crear nueva tabla con estos contenidos: id_room, id_user, status */
+
             $db=Conectar::conexion(); 
             $result = null;
             $q = $db->query("SELECT * FROM NUEVATABLA WHERE id_user=$id AND status= 1");
             if($datos = $q->fetch_assoc()){
-            $result = new Chat($datos);
+
+            $result = new Room($datos);
             }
             if($result == null){ /*Funcionara? */
                 $db=Conectar::conexion();
                 $q = "INSERT INTO NUEVATABLA (id_user, status) VALUES ($id, 1)";
                 $result = $db->query($q);
-                if($datos = $q->fetch_assoc()){
-                $result = new Chat($datos);
+                if($datos = $result->fetch_assoc()){
+                $result = new Room($datos);
                 }   
             }
             return $result;
