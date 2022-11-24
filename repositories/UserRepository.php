@@ -47,20 +47,6 @@ class UserRepository{
 
     
     /*Cambio de status para mostrar los conectados*/
-    /*
-    public static function connectedStatus($user){
-        $db=Conectar::conexion();
-        $q = "UPDATE usuarios SET status=1 WHERE id_user=$user";
-        $result = $db->query($q);
-        
-    }
-    public static function disconnectedStatus($user){
-        $db=Conectar::conexion();
-        $q = "UPDATE usuarios SET status=0 WHERE id_user=$user";
-        $result = $db->query($q);
-    
-    }
-    */
     
     public static function toggleStatus($user){
         $db=Conectar::conexion();

@@ -8,10 +8,20 @@ main{
     flex-direction: row;
     height: 70vh;
 }
+nav ul{
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+}
+.connected-users ul{
+    list-style: none;
+}
 
 main aside{
-    width: 20%;
+    background-color: aliceblue;
     border: 1px solid black;
+    width: 20%;
+    
 }
 
 main section{
@@ -19,4 +29,20 @@ main section{
     flex-direction: column;
     width: 80%;
     border: 1px solid black;
+}
+.chat-container{
+    display: flex;
+    flex-direction: column;
+    height: 500px; 
+    justify-content: space-between;
+}
+.message-container{
+    text-align: left;
+    margin-left: 20px;
+}
+#writeComment{
+    display: flex;
+    height: 50px;
+    justify-content: center;
+
 }
