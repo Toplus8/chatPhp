@@ -13,7 +13,6 @@
             $this->date = $datos['date'];
         }
 
-
         public function getIdMsg(){
             return $this->id_msg;
         }

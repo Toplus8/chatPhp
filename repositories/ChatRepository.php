@@ -1,17 +1,14 @@
 <?php
-    /*Guardar mensaje en DB */
     class ChatRepository{
+        /*Guardar mensaje en DB */
         public static function saveMessage($message){
             $db=Conectar::conexion();
-            
             $q = "INSERT INTO `mensajes` (`id_msg`, `id_user`, `msg`, `date`) VALUES (NULL, '".$_SESSION['user']->getIdUser()."', '".$message."', '2022-11-23 20:47:18
             ');";
-           
-            
             $result = $db->query($q);
         }
 
-         public static function getMessages(){
+        public static function getMessages(){
             $db=Conectar::conexion();
             $messages = [];
             $q = "SELECT * FROM mensajes";
@@ -21,5 +18,37 @@
             }
             return $messages;
         }
+        /*Obtener Salas de chat disponibles */
+        /*¿Una sala de chat solo está disponible si el creador está conectado? si es asi esto no vale 
+        public static function getChatRooms(){
+            $db=Conectar::conexion();
+            $chatRooms = [];
+            $q = "SELECT * FROM NUEVATABLA WHERE status=1";
+            $result = $db->query($q);
+            while($datos=$result->fetch_assoc()){
+                $chatRooms [] = new Content ($datos);
+            }
+            return $chatRooms;
+        }
+        /*Abrir Sala de chat, si no existe se crea una. 
+        public static function openChatRoomById($id){
+            /*Crear nueva tabla con estos contenidos: id_room, id_user, status 
+            $db=Conectar::conexion(); 
+            $result = null;
+            $q = $db->query("SELECT * FROM NUEVATABLA WHERE id_user=$id AND status= 1");
+            if($datos = $q->fetch_assoc()){
+            $result = new Chart($datos);
+            }
+            if($result == null){ /*Funcionara? 
+                $db=Conectar::conexion();
+                $q = "INSERT INTO NUEVATABLA (id_user, status) VALUES ($id, 1)";
+                $result = $db->query($q);
+                if($datos = $q->fetch_assoc()){
+                $result = new Chart($datos);
+                }   
+            }
+            return $result;
+        }*/
     }
+
 ?>

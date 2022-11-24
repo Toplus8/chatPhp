@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./views/css/styles.css">
+    <title>Chat Online - PHP</title>
+</head>
+<body>
+<h1>Chat Online - PHP</h1>
+<a href="index.php">Inicio</a> -
+
+<?php
+if($_SESSION['user']->getName()=="")
+	echo '<a href="index.php?login">Iniciar Sesi&oacute;n</a></br>';
+else{
+	echo 'Bienvenido '.$_SESSION['user']->getName().' ';
+    if($_SESSION['user']->getRole()==1){
+	    echo ' - <a href="index.php?administration">Panel de administración</a> ';
+	} 
+    echo ' - <a href="index.php?chatRoom">Salas de chat</a>';
+    echo ' - <a href="index.php?login&logout">Salir</a>';
+}
+?>
+<main>
+    <aside>
+        <div class="connected-users">
+            <ul>
+                <?php
+                foreach($usuariosConectados as $usuario){
+                    echo'<li>'.$usuario->getName().'</li>';
+                }
+                ?>
+            </ul>
+        </div>
+        <div class="pie">
+            <input>admin</input> <!--¿¿¿Esto para que era??? -->
+
+            <form action="index.php?login&logout" method="post">
+                <input type="submit"> Desconectarse </input>
+            </form>    
+            
+        </div>
+    </aside>
+
+    <section>
+        <div class="message-container">
+        <?php
+            foreach($messages as $message){
+                echo '<div class="message">
+                '.$message->getUser()->getName().': '.$message->getMsg().'
+                </div>';
+            }
+            
+        ?>
+        </div>
+        <form action="index.php" method="post">
+            <textarea rows=5 cols=150 name="message"></textarea>
+            <input type="submit" name="sendMessage" value="Enviar mensaje">
+        </form>
+    </section>
+
+</main>
+<footer>
+    <h5>&copy;2022 Juan Tom&aacute;s Romero, Jesús Muela, Antonio Ruiz</h5>
+</footer> 
+</body>
+</html>

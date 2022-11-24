@@ -18,12 +18,18 @@ if(!isset($_SESSION['user'])){
 }
 if(isset($_GET['login'])) {
     require_once('controllers/loginController.php');
+    die();
 }
 if(isset($_POST['sendMessage'])) {
     
     require_once('controllers/chatController.php');
 }
-
+if(isset($_GET['chatRoom'])){
+    require_once('controllers/chatController.php');
+    require_once('views/chatRoomView.phtml');
+    die();
+}
+/*$chatRooms = ChatRepository::getChatRooms();*/
 $usuariosConectados= UserRepository::getConnectedUsers();
 // carga de vistas
 require_once("views/mainView.phtml");
