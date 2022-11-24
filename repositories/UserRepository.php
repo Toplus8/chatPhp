@@ -1,6 +1,8 @@
 <?php
 
 class UserRepository{
+
+    private static $secondsInactive = 30;
     /*Selecciona usuario a partir de un id concreto */
     public static function getUserById($id){ 
         $db=Conectar::conexion();
@@ -39,13 +41,27 @@ class UserRepository{
             if($datos=$result->fetch_assoc()){
                 if($datos['pass']==md5($pass)){
                     $_SESSION['user']= new User($datos);
-                     //redirige a la url especificada
+                    UserRepository::updateLastAction($_SESSION['user']);
                 }
             }
         }
     }
     
     /*Cambio de status para mostrar los conectados*/
+    /*
+    public static function connectedStatus($user){
+        $db=Conectar::conexion();
+        $q = "UPDATE usuarios SET status=1 WHERE id_user=$user";
+        $result = $db->query($q);
+        
+    }
+    public static function disconnectedStatus($user){
+        $db=Conectar::conexion();
+        $q = "UPDATE usuarios SET status=0 WHERE id_user=$user";
+        $result = $db->query($q);
+    }
+    */
+ 
 
     public static function toggleStatus($user){
         $db=Conectar::conexion();
@@ -54,6 +70,60 @@ class UserRepository{
         $q = "UPDATE usuarios SET status=" . $status . " WHERE id_user=" . $user->getIdUser();
         $result = $db->query($q);
     }
+    
+    public static function setInactive($user){
+        if($user->getIdUser() !== 0){
+            $db=Conectar::conexion();
+            $now = new DateTime();
+            $q = "SELECT * from usuarios where id_user = " . $user->getIdUser();
+            $result = $db->query($q);
+            $userLastAction = $result->fetch_assoc()["lastActionAt"];
+            if($now->getTimestamp() - strtotime($userLastAction) >= UserRepository::$secondsInactive){
+                UserRepository::toggleStatus($user);
+                return true;
+            }
+        }
+    }
+
+    public static function updateInactiveUsers(){
+        $db=Conectar::conexion();
+        $now = new DateTime();
+        $q1 = "SELECT * FROM usuarios";
+        $result = $db->query($q1);
+        while($datos = $result->fetch_assoc()){
+            $user = new User($datos);
+            $userLastAction = $user->getLastActionAt();
+            if($now->getTimestamp() - strtotime($userLastAction) >= UserRepository::$secondsInactive){
+                UserRepository::disableStatus($user);
+            }
+        }
+    }
+
+    public static function updateLastAction($user){
+        $db=Conectar::conexion();
+        $now = new DateTime();
+        $q = "UPDATE usuarios SET lastActionAt=NOW() where id_user = " . $user->getIdUser();
+        $db->query($q);
+    }
+
+    public static function disableStatus($user){
+        $db=Conectar::conexion();
+        $q = "UPDATE usuarios SET status=0 WHERE id_user=".$user->getIdUser();
+        $result = $db->query($q);
+    }
+    
+    /*public static function connectedStatus($user,$status){ ////////NO FUNCIONA ._.
+        if($status==0){
+            $db=Conectar::conexion();
+            $q = "UPDATE usuarios SET status=1 WHERE id_user=$user";
+            $result = $db->query($q);
+        }
+        if($status==1){
+            $db=Conectar::conexion();
+            $q = "UPDATE usuarios SET status=0 WHERE id_user=$user";
+            $result = $db->query($q);
+        }
+    }*/
     /*Usuarios conectados */
     public static function getConnectedUsers(){ 
         $db=Conectar::conexion();

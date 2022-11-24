@@ -6,6 +6,7 @@
             $q = "INSERT INTO `mensajes` (`id_msg`,`id_room`, `id_user`, `msg`, `date`) VALUES (NULL, ".$idRoom." ,'".$_SESSION['user']->getIdUser()."', '".$message."', '2022-11-23 20:47:18
             ');";
             $result = $db->query($q);
+            UserRepository::updateLastAction($_SESSION['user']);
         }
 
         public static function getMessages($idRoom){
@@ -38,6 +39,7 @@
             if($datos = $q->fetch_assoc()){
                 $result = new ChatRoom($datos);
             }
+            UserRepository::updateLastAction($_SESSION['user']);
             return $result;
         }
 
