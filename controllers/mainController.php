@@ -34,6 +34,12 @@ if(isset($_GET['chatRoom'])){
     die();
 }
 
+if(isset($_GET['duo'])){
+    require_once('controllers/duoController.php');
+    require_once('views/duoView.phtml');
+    die();
+}
+
 /*$chatRooms = ChatRepository::getChatRooms();*/
 $usuariosConectados= UserRepository::getConnectedUsers();
 if(null !== $_SESSION['user']->getIdUser()){

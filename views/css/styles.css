@@ -13,6 +13,7 @@ nav ul{
     list-style: none;
     justify-content: space-around;
 }
+
 .connected-users ul{
     list-style: none;
 }
@@ -30,16 +31,20 @@ main section{
     width: 80%;
     border: 1px solid black;
 }
+
 .chat-container{
     display: flex;
     flex-direction: column;
     height: 500px; 
     justify-content: space-between;
 }
+
 .message-container{
     text-align: left;
     margin-left: 20px;
+    overflow-y: auto;
 }
+
 #writeComment{
     display: flex;
     height: 50px;
