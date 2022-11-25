@@ -45,7 +45,7 @@
          <nav>
             <ul>
                 <?php
-                    foreach( $salas as $sala){
+                    foreach($salas as $sala){
                         echo' <li><a href="index.php?chatRoom&id='.$sala->getIdRoom().'">Sala '.$sala->getIdRoom().'</a></li>';
                     }
                 ?>
@@ -54,15 +54,17 @@
         <div class="chat-container">
             <div class="message-container">
                 <?php
-                    foreach($messages as $message){
-                        echo '<div class="message">'.$message->getUser()->getName().': '.$message->getMsg().'</div>';
-                    }  
+                    if(isset($messages)){
+                        foreach($messages as $message){
+                            echo '<div class="message">'.$message->getUser()->getName().': '.$message->getMsg().'</div>';
+                        } 
+                    }
                 ?>
             </div>
             <!-- Hay que especificar a que sala enviamos cada mensaje -->
             <?php
                 echo'
-                <form action="index.php?chatRoom&id=1" method="post" id="writeComment">
+                <form action="index.php?chatRoom&id='.$_GET['id'].'" method="post" id="writeComment">
                     <textarea rows=5 cols=50 name="message"></textarea>
                     <input type="submit" name="sendMessage" value="Enviar mensaje">
                 </form>
@@ -70,7 +72,6 @@
             ?>
         </div>
     </section>
-
 </main>
 <footer>
     <h5>&copy;2022 Juan Tom&aacute;s Romero, Jesús Muela, Antonio Ruiz</h5>

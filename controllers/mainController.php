@@ -9,6 +9,7 @@ require_once('models/ChatContentModel.php');
 require_once('models/ChatRoomModel.php');
 session_start();
 
+
 if(!isset($_SESSION['user'])){
     $datos['id_user']=0;
     $datos['name']="";
@@ -32,11 +33,14 @@ if(isset($_GET['chatRoom'])){
     require_once('views/chatRoomView.phtml');
     die();
 }
+
 /*$chatRooms = ChatRepository::getChatRooms();*/
 $usuariosConectados= UserRepository::getConnectedUsers();
-if(UserRepository::setInactive($_SESSION['user'])){
-    require_once('views/LoginView.phtml');
-    die();
+if(null !== $_SESSION['user']->getIdUser()){
+    if(UserRepository::setInactive($_SESSION['user'])){
+        require_once('views/LoginView.phtml');
+        die();
+    }
 }
 
 UserRepository::updateInactiveUsers();

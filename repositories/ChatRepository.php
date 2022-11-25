@@ -33,14 +33,15 @@
         }
         /*Abrir Sala de chat, si no existe se crea una. */
         public static function openChatRoomById($id){
-            $db=Conectar::conexion(); 
+            $db=Conectar::conexion();
             $result = null;
-            $q = $db->query("SELECT * FROM salas WHERE id_room=$id AND status= 1");
-            if($datos = $q->fetch_assoc()){
-                $result = new ChatRoom($datos);
+            $q = "SELECT * FROM salas WHERE id_room=$id AND status= 1";
+            $result = $db->query($q);
+            if($datos = $result->fetch_assoc()){
+                $chat = new ChatRoom($datos);
             }
             UserRepository::updateLastAction($_SESSION['user']);
-            return $result;
+            return $chat;
         }
 
         public static function createChatRoom($id){
