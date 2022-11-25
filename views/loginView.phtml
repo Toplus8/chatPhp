@@ -5,35 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./views/css/styles.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <title>Chat Online - PHP acceso y registro</title>
 </head>
-<body>
-<h1>Noticiario - PHP Acceso y registro</h1>
-<a href="index.php">Inicio</a> -
-<h2>Acceso</h2>
-    <form action="index.php?login" method="post">
-        <input type="text" name="user" placeholder="Usuario"/>
-        <input type="password" name="password" placeholder="Contraseña"/>
-        <input type="submit" name="acceso" value="Iniciar Sesi&oacute;n"/>
-    </form>
-
-    <h2>Registro</h2>
-    <form action="index.php?login" method="post">
-        <input type="text" name="userRegister" placeholder="Usuario"/>
-        <input type="password" name="passRegister" placeholder="Contraseña"/>
-        <input type="password" name="pass2Register" placeholder="Repite la contraseña"/>
-        <input type="submit" name="registro" value="Registro"/>
-    </form></br>
+<body class="text-center">
+<h1 class="m-5">Noticiario - PHP Acceso y registro</h1>
+<a href="index.php" class="link-success">Inicio</a>
+    <div class="registros d-flex flex-row justify-content-center col-12 align-items-center">
+        <div class="d-flex flex-column col-4">
+            <h2 class="m-3">Acceso</h2>
+            <form action="index.php?login" class="d-flex justify-content-center" method="post">
+                <div class="mb-3 col-6">
+                    <input type="text" class="form-control m-3" name="user" placeholder="Usuario"/>
+                    <input type="password" class="form-control m-3" name="password" placeholder="Contraseña"/>
+                    <input type="submit" class="btn btn-primary form-control m-3" name="acceso" value="Iniciar Sesi&oacute;n"/>
+                </div>        
+            </form>
+        </div>
+        <div class="d-flex flex-column col-4">
+            <h2 class="m-3">Registro</h2>
+            <form action="index.php?login" class="d-flex justify-content-center" method="post">
+                <div class="mb-3 col-6 d-flex flex-column justify-content-center">
+                    <input type="text" class="form-control m-3" name="userRegister" placeholder="Usuario"/>
+                    <input type="password" class="form-control m-3" name="passRegister" placeholder="Contraseña"/>
+                    <input type="password" class="form-control m-3" name="pass2Register" placeholder="Repite la contraseña"/>
+                    <input type="submit" class="btn btn-primary form-control m-3" name="registro" value="Registro"/>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <?php
     if(isset($error)){
         echo $error;
     }
     
-    
     ?>
     <footer>
-    <h5>&copy;2022 Juan Tom&aacute;s Romero, Jesús Muela, Antonio Ruiz</h5>
-</footer> 
+    <h5 class="m-3">&copy;2022 Juan Tom&aacute;s Romero, Jesús Muela, Antonio Ruiz</h5>
+    </footer> 
 </body>
 </html>

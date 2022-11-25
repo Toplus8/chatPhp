@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./views/css/styles.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <title>Chat Online - PHP</title>
 </head>
 <body>
 <header>
-    <h1>Chat Online - PHP</h1>
+    <h1 class="text-center">Chat Online - PHP</h1>
 </header>
 <nav>
     <ul>
@@ -65,9 +66,11 @@
             <?php
             if(isset($_GET['id'])){
                 echo'
-                <form action="index.php?chatRoom&id='.$_GET['id'].'" method="post" id="writeComment">
-                    <textarea rows=5 cols=50 name="message"></textarea>
-                    <input type="submit" name="sendMessage" value="Enviar mensaje">
+                <form action="index.php?chatRoom&id='.$_GET['id'].'" method="post" id="writeComment" class="d-flex align-items-center">
+                    <div class="form-group m-3">
+                        <textarea class="form-control" rows="2" cols="50" name="message"></textarea>
+                    </div>
+                    <input class="btn btn-primary" type="submit" name="sendMessage" value="Enviar mensaje">
                 </form>
                 ';
             }
@@ -76,7 +79,7 @@
     </section>
 </main>
 <footer>
-    <h5>&copy;2022 Juan Tom&aacute;s Romero, Jesús Muela, Antonio Ruiz</h5>
+    <h5 class="text-center m-3">&copy;2022 Juan Tom&aacute;s Romero, Jesús Muela, Antonio Ruiz</h5>
 </footer> 
 </body>
 </html>
