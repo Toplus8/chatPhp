@@ -6,7 +6,7 @@ body{
 main{
     display: flex;
     flex-direction: row;
-    height: 70vh;
+    height: 80vh;
 }
 nav ul{
     display: flex;
@@ -22,7 +22,6 @@ main aside{
     background-color: aliceblue;
     border: 1px solid black;
     width: 20%;
-    
 }
 
 main section{
@@ -35,7 +34,7 @@ main section{
 .chat-container{
     display: flex;
     flex-direction: column;
-    height: 500px; 
+    height: 72vh; 
     justify-content: space-between;
 }
 
@@ -49,5 +48,4 @@ main section{
     display: flex;
     height: 50px;
     justify-content: center;
-
 }

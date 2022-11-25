@@ -10,7 +10,7 @@
 </head>
 <body>
 <header>
-    <h1 class="text-center">Chat Online - PHP</h1>
+    <h1 class="text-center m-3">Chat Online - PHP</h1>
 </header>
 <nav>
     <ul>
@@ -32,10 +32,10 @@
 <main>
     <aside>
         <div class="connected-users">
-            <ul>
+            <ul class="m-5">
                 <?php
                 foreach($usuariosConectados as $usuario){
-                    echo'<li><a href="index.php?duo&id1='.$usuario->getIdUser().'&id2='.$_SESSION['user']->getIdUser().'">'.$usuario->getName().'<img src="images/checked.png"></a></li>';
+                    echo'<li><a href="index.php?duo&id1='.$usuario->getIdUser().'&id2='.$_SESSION['user']->getIdUser().'">'.$usuario->getName().'<img class="m-2" src="images/checked.png"></a></li>';
                 }
                 ?>
             </ul>
@@ -44,7 +44,7 @@
 
     <section>
          <nav>
-            <ul>
+            <ul class="m-3">
                 <?php
                     foreach($salas as $sala){
                         echo' <li><a href="index.php?chatRoom&id='.$sala->getIdRoom().'">Sala '.$sala->getIdRoom().'</a></li>';
@@ -57,7 +57,7 @@
                 <?php
                     if(isset($messages)){
                         foreach($messages as $message){
-                            echo '<div class="message">'.$message->getUser()->getName().': '.$message->getMsg().'</div>';
+                            echo '<div class="message m-3">'.$message->getUser()->getName().': '.$message->getMsg().'</div>';
                         } 
                     }
                 ?>
@@ -66,9 +66,9 @@
             <?php
             if(isset($_GET['id'])){
                 echo'
-                <form action="index.php?chatRoom&id='.$_GET['id'].'" method="post" id="writeComment" class="d-flex align-items-center">
+                <form action="index.php?chatRoom&id='.$_GET['id'].'" method="post" id="writeComment" class="d-flex align-items-center m-2">
                     <div class="form-group m-3">
-                        <textarea class="form-control" rows="2" cols="50" name="message"></textarea>
+                        <textarea class="form-control" rows="2" cols="60" name="message"></textarea>
                     </div>
                     <input class="btn btn-primary" type="submit" name="sendMessage" value="Enviar mensaje">
                 </form>
