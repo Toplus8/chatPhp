@@ -12,6 +12,12 @@
     if(isset($_GET['id']) && $_GET['id'] !== ''){
         $messages = ChatRepository::getMessages($_GET['id']);
     }
+    if(isset($_POST['openPublicChat'])){
+        
+    }
+    /*if(isset($_GET['id'])&& isset($_GET['id2'])){
+        ChatRepository::openPrivate($_GET['id'],$_GET['id2']);
+    }*/
     $usuariosConectados = UserRepository::getConnectedUsers();
     $salas = ChatRepository::getChatRooms();
 ?>

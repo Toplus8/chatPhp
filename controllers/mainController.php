@@ -35,8 +35,8 @@ if(isset($_GET['chatRoom'])){
 }
 
 if(isset($_GET['duo'])){
-    require_once('controllers/duoController.php');
-    require_once('views/duoView.phtml');
+    require_once('controllers/ChatController.php');
+    require_once('views/chatRoomView.phtml');
     die();
 }
 

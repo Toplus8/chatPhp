@@ -52,6 +52,15 @@
                 $result = new ChatRoom($datos); 
             }
         }
+        public static function openPrivate($id, $id2){
+            $db=Conectar::conexion();
+            $q = "INSERT INTO `salas` (`id_room`, `id_user`, `status`,`id_receiver`) VALUES (NULL, '".$id."', '1', $id2);";
+            $result = $db->query($q);
+            if($datos = $result->fetch_assoc()){
+                $result = new ChatRoom($datos); 
+            }
+        
+        }
     }
 
 ?>

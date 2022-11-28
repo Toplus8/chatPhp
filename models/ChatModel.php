@@ -1,5 +1,5 @@
 <?php
-class Room{
+/*class Room{
     private $id_room;
     private $id_sender;
     private $id_receiver;
@@ -20,5 +20,5 @@ class Room{
     public function getIdReceiver(){
         return $this->id_receiver;
     }
-} 
+} */
 ?>

@@ -34,11 +34,15 @@
         <div class="connected-users">
             <ul class="m-5">
                 <?php
+                echo "Pulsa en el usuario para enviarle un privado.";
                 foreach($usuariosConectados as $usuario){
                     echo'<li><a href="index.php?duo&id1='.$usuario->getIdUser().'&id2='.$_SESSION['user']->getIdUser().'">'.$usuario->getName().'<img class="m-2" src="images/checked.png"></a></li>';
                 }
                 ?>
             </ul>
+            <form action="index.php?chatRoom&id= <?php $_SESSION['user']->getIdUser() ?>" method="post">
+                <input type="submit" name="openPublicChat" value="Abrir sala pública">
+            </form>
         </div>
     </aside>
 
@@ -62,7 +66,6 @@
                     }
                 ?>
             </div>
-            <!-- Hay que especificar a que sala enviamos cada mensaje -->
             <?php
             if(isset($_GET['id'])){
                 echo'
