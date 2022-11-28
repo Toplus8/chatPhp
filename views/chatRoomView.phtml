@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./views/css/styles.css">
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <title>Chat Online - PHP</title>
 </head>
+
 <body>
-<header>
-    <h1 class="text-center m-3">Chat Online - PHP</h1>
-</header>
-<nav>
-    <ul>
-        <li><a href="index.php">Inicio</a></li>
-        <?php
-        if($_SESSION['user']->getName()=="")
-            echo '<li><a href="index.php?login">Iniciar Sesi&oacute;n</a></li>';
-        else{
-            if($_SESSION['user']->getRole()==1){
-                echo '<li><a href="index.php?administration">Panel de administración</a></li> ';
-            } 
-            echo ' <li><a href="index.php?chatRoom">Salas de chat</a></li>';
-            echo ' <li><a href="index.php?login&logout">Salir</a></li>';
-        }
-        ?>
-    </ul>
-</nav>
+    <header>
+        <h1 class="text-center m-3">Chat Online - PHP</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.php">Inicio</a></li>
+            <?php
+            if ($_SESSION['user']->getName() == "")
+                echo '<li><a href="index.php?login">Iniciar Sesi&oacute;n</a></li>';
+            else {
+                if ($_SESSION['user']->getRole() == 1) {
+                    echo '<li><a href="index.php?administration">Panel de administración</a></li> ';
+                }
+                echo ' <li><a href="index.php?chatRoom">Salas de chat</a></li>';
+                echo ' <li><a href="index.php?login&logout">Salir</a></li>';
+            }
+            ?>
+        </ul>
+    </nav>
 
 <main>
     <aside>
@@ -57,36 +59,37 @@
                         echo' <li><a href="index.php?chatRoom&id='.$sala->getIdRoom().'">Sala '.$sala->getIdRoom().'</a></li>';
                         
                     }
-                ?>
-            </ul>
-        </nav>
-        <div class="chat-container">
-            <div class="message-container">
-                <?php
-                    if(isset($messages)){
-                        foreach($messages as $message){
-                            echo '<div class="message m-3">'.$message->getUser()->getName().': '.$message->getMsg().'</div>';
-                        } 
+                    ?>
+                </ul>
+            </nav>
+            <div class="chat-container">
+                <div class="message-container">
+                    <?php
+                    if (isset($messages)) {
+                        foreach ($messages as $message) {
+                            echo '<div class="message m-3">' . $message->getUser()->getName() . ': ' . $message->getMsg() . '</div>';
+                        }
                     }
-                ?>
-            </div>
-            <?php
-            if(isset($_GET['id'])){
-                echo'
-                <form action="index.php?chatRoom&id='.$_GET['id'].'" method="post" id="writeComment" class="d-flex align-items-center m-2">
+                    ?>
+                </div>
+                <?php
+                if (isset($_GET['id'])) {
+                    echo '
+                <form action="index.php?chatRoom&id=' . $_GET['id'] . '" method="post" id="writeComment" class="d-flex align-items-center m-2">
                     <div class="form-group m-3">
                         <textarea class="form-control" rows="2" cols="60" name="message"></textarea>
                     </div>
                     <input class="btn btn-primary" type="submit" name="sendMessage" value="Enviar mensaje">
                 </form>
                 ';
-            }
-            ?>
-        </div>
-    </section>
-</main>
-<footer>
-    <h5 class="text-center m-3">&copy;2022 Juan Tom&aacute;s Romero, Jesús Muela, Antonio Ruiz</h5>
-</footer> 
+                }
+                ?>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <h5 class="text-center m-3">&copy;2022 Juan Tom&aacute;s Romero, Jesús Muela, Antonio Ruiz</h5>
+    </footer>
 </body>
+
 </html>
