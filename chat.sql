@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2022 a las 14:52:25
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.0.13
+-- Tiempo de generación: 28-11-2022 a las 20:00:20
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,19 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `chat`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `duo`
---
-
-CREATE TABLE `duo` (
-  `id_duo` int(11) NOT NULL,
-  `id_user1` int(11) NOT NULL,
-  `id_user2` int(11) NOT NULL,
-  `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -105,7 +92,34 @@ INSERT INTO `mensajes` (`id_msg`, `id_room`, `id_user`, `msg`, `date`) VALUES
 (50, 1, 2, 'asfaf', '2022-11-23 20:47:18'),
 (51, 1, 2, 'asfaf', '2022-11-23 20:47:18'),
 (52, 1, 2, 'asfaf', '2022-11-23 20:47:18'),
-(53, 1, 2, 'asfaf', '2022-11-23 20:47:18');
+(53, 1, 2, 'asfaf', '2022-11-23 20:47:18'),
+(54, 2, 1, 'gejhjkerlh', '2022-11-23 20:47:18'),
+(55, 2, 1, 'gejhjkerlh', '2022-11-23 20:47:18'),
+(56, 2, 1, 'aa', '2022-11-23 20:47:18'),
+(57, 1, 1, '', '2022-11-23 20:47:18'),
+(58, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(59, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(60, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(61, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(62, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(63, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(64, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(65, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(66, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(67, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(68, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(69, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(70, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(71, 1, 1, 'aa', '2022-11-23 20:47:18'),
+(72, 1, 1, 'sgpijjgsdñk', '2022-11-23 20:47:18'),
+(73, 2, 1, 'Holoa mque tal', '2022-11-23 20:47:18'),
+(75, 1, 3, 'hola\r\n', '2022-11-23 20:47:18'),
+(76, 1, 2, 'fdgdfgdf', '2022-11-23 20:47:18'),
+(77, 2, 2, 'sdgg', '2022-11-23 20:47:18'),
+(78, 2, 2, 'sfsadfgs', '2022-11-23 20:47:18'),
+(79, 2, 2, '11', '2022-11-23 20:47:18'),
+(80, 2, 2, '11', '2022-11-23 20:47:18'),
+(81, 14, 2, 'Hola', '2022-11-23 20:47:18');
 
 -- --------------------------------------------------------
 
@@ -116,16 +130,19 @@ INSERT INTO `mensajes` (`id_msg`, `id_room`, `id_user`, `msg`, `date`) VALUES
 CREATE TABLE `salas` (
   `id_room` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  `id_receiver` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `salas`
 --
 
-INSERT INTO `salas` (`id_room`, `id_user`, `status`) VALUES
-(1, 1, 1),
-(2, 1, 1);
+INSERT INTO `salas` (`id_room`, `id_user`, `status`, `id_receiver`) VALUES
+(1, 1, 1, 0),
+(2, 1, 1, 0),
+(8, 2, 1, 0),
+(14, 2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -147,20 +164,13 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_user`, `name`, `pass`, `role`, `status`, `lastActionAt`) VALUES
-(1, 'admin', '202cb962ac59075b964b07152d234b70', 1, 1, '2022-11-25 03:26:56'),
-(2, 'jota', '202cb962ac59075b964b07152d234b70', 0, 0, '2022-11-25 03:27:12');
+(1, 'admin', '202cb962ac59075b964b07152d234b70', 1, 0, '2022-11-28 19:49:15'),
+(2, 'jota', '202cb962ac59075b964b07152d234b70', 0, 1, '2022-11-28 19:57:34'),
+(3, 'robert', '202cb962ac59075b964b07152d234b70', 0, 0, '2022-11-28 19:53:06');
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `duo`
---
-ALTER TABLE `duo`
-  ADD PRIMARY KEY (`id_duo`),
-  ADD KEY `id_user1` (`id_user1`),
-  ADD KEY `id_user2` (`id_user2`);
 
 --
 -- Indices de la tabla `mensajes`
@@ -175,7 +185,8 @@ ALTER TABLE `mensajes`
 --
 ALTER TABLE `salas`
   ADD PRIMARY KEY (`id_room`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `salas_ibfk_2` (`id_receiver`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -188,39 +199,26 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de la tabla `duo`
---
-ALTER TABLE `duo`
-  MODIFY `id_duo` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT de la tabla `salas`
 --
 ALTER TABLE `salas`
-  MODIFY `id_room` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_room` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `duo`
---
-ALTER TABLE `duo`
-  ADD CONSTRAINT `duo_ibfk_1` FOREIGN KEY (`id_user1`) REFERENCES `usuarios` (`id_user`),
-  ADD CONSTRAINT `duo_ibfk_2` FOREIGN KEY (`id_user2`) REFERENCES `usuarios` (`id_user`);
 
 --
 -- Filtros para la tabla `mensajes`
@@ -233,7 +231,7 @@ ALTER TABLE `mensajes`
 -- Filtros para la tabla `salas`
 --
 ALTER TABLE `salas`
-  ADD CONSTRAINT `salas_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_user`);
+  ADD CONSTRAINT `salas_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_user`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
