@@ -31,22 +31,22 @@
         </ul>
     </nav>
 
-<main>
-    <aside>
-        <div class="connected-users">
-            <ul class="m-5">
-                <?php
-                echo "Pulsa en el usuario para enviarle un privado.";
-                foreach($usuariosConectados as $usuario){
-                    echo'<li><a href="index.php?chatRoom&id1='.$_SESSION['user']->getIdUser().'&id2='.$usuario->getIdUser().'">'.$usuario->getName().'<img class="m-2" src="images/checked.png"></a></li>';
-                }
-                ?>
-            </ul>
-            <form action="index.php?chatRoom&id= <?php echo $_SESSION['user']->getIdUser() ?>" method="post">
-                <input type="submit" class="btn btn-primary" name="openPublicChat" value="Abrir sala pública">
-            </form>
-        </div>
-    </aside>
+    <main>
+        <aside>
+            <div class="connected-users">
+                <ul class="m-5">
+                    <?php
+                    echo "Pulsa en el usuario para enviarle un privado.";
+                    foreach ($usuariosConectados as $usuario) {
+                        echo '<li><a href="index.php?chatRoom&id1=' . $_SESSION['user']->getIdUser() . '&id2=' . $usuario->getIdUser() . '">' . $usuario->getName() . '<img class="m-2" src="images/checked.png"></a></li>';
+                    }
+                    ?>
+                </ul>
+                <form action="index.php?chatRoom&id= <?php echo $_SESSION['user']->getIdUser() ?>" class="text-center" method="post">
+                    <input type="submit" class="btn btn-primary" name="openPublicChat" value="Abrir sala pública">
+                </form>
+            </div>
+        </aside>
 
         <section>
             <nav>
@@ -54,16 +54,20 @@
                     <?php
                     foreach ($salas as $sala) {
                         if ($sala->getIdUser() == $_SESSION['user']->getIdUser() && $sala->getReceiver() != 0 || $sala->getReceiver() == $_SESSION['user']->getIdUser()) {
-                            echo ' <li><a class="btn btn-info" href="index.php?chatRoom&id=' . $sala->getIdRoom() . '">Sala ' . $sala->getIdRoom() . '</a></li>';
+                            echo ' <li><a class="btn btn-info" href="index.php?chatRoom&id=' . $sala->getIdRoom() . '">Sala ' . $sala->getIdUser()->getName() . '</a></li>';
+                        } else if ($sala->getReceiver() == 0) {
+                            echo ' <li><a class="btn btn-warning" href="index.php?chatRoom&id=' . $sala->getIdRoom() . '">Sala ' . $sala->getIdRoom() . '</a></li>';
                         }
-                        echo ' <li><a class="btn btn-warning" href="index.php?chatRoom&id=' . $sala->getIdRoom() . '">Sala ' . $sala->getIdRoom() . '</a></li>';
                     }
                     ?>
                 </ul>
                 <h2 class="text-center">
                     <?php
-                    $chat = ChatRepository::getChatById($_GET['id']);
-                    echo 'Sala ' . $chat->getIdRoom();
+                    if (isset($_GET['id'])) {
+                        $chat = ChatRepository::getChatById($_GET['id']);
+                        echo 'Sala ' . $chat->getIdRoom();
+                    }
+
                     ?>
                 </h2>
             </nav>
