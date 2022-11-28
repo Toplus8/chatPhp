@@ -43,24 +43,29 @@
                 ?>
             </ul>
             <form action="index.php?chatRoom&id= <?php echo $_SESSION['user']->getIdUser() ?>" method="post">
-                <input type="submit" name="openPublicChat" value="Abrir sala pública">
+                <input type="submit" class="btn btn-primary" name="openPublicChat" value="Abrir sala pública">
             </form>
         </div>
     </aside>
 
-    <section>
-         <nav>
-            <ul class="m-3">
-                <?php
-                    foreach($salas as $sala){
-                        if($sala->getIdUser()==$_SESSION['user']->getIdUser()&&$sala->getReceiver()!=null || $sala->getReceiver()==$_SESSION['user']->getIdUser()){
-                            echo' <li><a href="index.php?chatRoom&id='.$sala->getIdRoom().'">Sala '.$sala->getIdUser()->getName().'</a></li>';
+        <section>
+            <nav>
+                <ul class="m-3">
+                    <?php
+                    foreach ($salas as $sala) {
+                        if ($sala->getIdUser() == $_SESSION['user']->getIdUser() && $sala->getReceiver() != 0 || $sala->getReceiver() == $_SESSION['user']->getIdUser()) {
+                            echo ' <li><a class="btn btn-info" href="index.php?chatRoom&id=' . $sala->getIdRoom() . '">Sala ' . $sala->getIdRoom() . '</a></li>';
                         }
-                        echo' <li><a href="index.php?chatRoom&id='.$sala->getIdRoom().'">Sala '.$sala->getIdRoom().'</a></li>';
-                        
+                        echo ' <li><a class="btn btn-warning" href="index.php?chatRoom&id=' . $sala->getIdRoom() . '">Sala ' . $sala->getIdRoom() . '</a></li>';
                     }
                     ?>
                 </ul>
+                <h2 class="text-center">
+                    <?php
+                    $chat = ChatRepository::getChatById($_GET['id']);
+                    echo 'Sala ' . $chat->getIdRoom();
+                    ?>
+                </h2>
             </nav>
             <div class="chat-container">
                 <div class="message-container">

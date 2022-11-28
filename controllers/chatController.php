@@ -14,7 +14,7 @@
     }
     /*Abrir sala pública */
     if(isset($_POST['openPublicChat'])){
-        ChatRepository::createChatRoom($_GET['id'],0);
+        ChatRepository::createChatRoom($_GET['id'], 0);
     }
     /*Abrir sala privada */
     if(isset($_GET['id1']) && isset($_GET['id2'])){
@@ -22,5 +22,3 @@
     }
     $usuariosConectados = UserRepository::getConnectedUsers();
     $salas = ChatRepository::getChatRooms();
-?>
-    
