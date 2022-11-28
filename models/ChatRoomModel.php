@@ -8,7 +8,7 @@
 
   public function __construct($datos){
     $this->id_room = $datos['id_room'];
-    $this->id_user = $datos['id_user'];
+    $this->id_user = UserRepository::getUserById($datos['id_user']);
     $this->status = $datos['status'];
     $this->id_receiver = $datos['id_receiver'];
   }
