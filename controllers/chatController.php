@@ -14,12 +14,10 @@
     }
 
     if(isset($_POST['openPublicChat'])){
-        ChatRepository::createChatRoom($_GET['id'], null);
+        ChatRepository::createChatRoom($_GET['id'], 0);
     }
     if(isset($_GET['id'])&& isset($_GET['id2'])){
         ChatRepository::createChatRoom($_GET['id'],$_GET['id2']);
     }
     $usuariosConectados = UserRepository::getConnectedUsers();
     $salas = ChatRepository::getChatRooms();
-?>
-    
