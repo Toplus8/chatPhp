@@ -36,11 +36,11 @@
                 <?php
                 echo "Pulsa en el usuario para enviarle un privado.";
                 foreach($usuariosConectados as $usuario){
-                    echo'<li><a href="index.php?duo&id1='.$usuario->getIdUser().'&id2='.$_SESSION['user']->getIdUser().'">'.$usuario->getName().'<img class="m-2" src="images/checked.png"></a></li>';
+                    echo'<li><a href="index.php?duo&id1='.$_SESSION['user']->getIdUser().'&id2='.$usuario->getIdUser().'">'.$usuario->getName().'<img class="m-2" src="images/checked.png"></a></li>';
                 }
                 ?>
             </ul>
-            <form action="index.php?chatRoom&id= <?php $_SESSION['user']->getIdUser() ?>" method="post">
+            <form action="index.php?chatRoom&id= <?php echo $_SESSION['user']->getIdUser() ?>" method="post">
                 <input type="submit" name="openPublicChat" value="Abrir sala pública">
             </form>
         </div>
@@ -51,7 +51,11 @@
             <ul class="m-3">
                 <?php
                     foreach($salas as $sala){
+                        if($sala->getIdUser()==$_SESSION['user']->getIdUser()&&$sala->getReceiver()!=null || $sala->getReceiver()==$_SESSION['user']->getIdUser()){
+                            echo' <li><a href="index.php?chatRoom&id='.$sala->getIdRoom().'">Sala '.$sala->getIdRoom().'</a></li>';
+                        }
                         echo' <li><a href="index.php?chatRoom&id='.$sala->getIdRoom().'">Sala '.$sala->getIdRoom().'</a></li>';
+                        
                     }
                 ?>
             </ul>

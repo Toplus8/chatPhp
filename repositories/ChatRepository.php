@@ -44,23 +44,14 @@
             return $chat;
         }
 
-        public static function createChatRoom($id){
+        public static function createChatRoom($id, $id2){
             $db=Conectar::conexion();
-            $q = "INSERT INTO `salas` (`id_room`, `id_user`, `status`) VALUES (NULL, '".$id."', '1');";
-            $result = $db->query($q);
-            if($datos = $result->fetch_assoc()){
-                $result = new ChatRoom($datos); 
-            }
+            $q = "INSERT INTO `salas` (`id_room`, `id_user`, `status`,`id_receiver`) VALUES (NULL, $id, '1', $id2);";
+            
+            $db->query($q);
+            
         }
-        public static function openPrivate($id, $id2){
-            $db=Conectar::conexion();
-            $q = "INSERT INTO `salas` (`id_room`, `id_user`, `status`,`id_receiver`) VALUES (NULL, '".$id."', '1', $id2);";
-            $result = $db->query($q);
-            if($datos = $result->fetch_assoc()){
-                $result = new ChatRoom($datos); 
-            }
         
-        }
     }
 
 ?>
