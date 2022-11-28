@@ -60,6 +60,12 @@
                     }
                     ?>
                 </ul>
+                <h2 class="text-center">
+                    <?php
+                    $chat = ChatRepository::getChatById($_GET['id']);
+                    echo 'Sala ' . $chat->getIdRoom();
+                    ?>
+                </h2>
             </nav>
             <div class="chat-container">
                 <div class="message-container">
